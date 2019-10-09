@@ -1,18 +1,9 @@
 registernamn = input("registrera användarnamn: ") 
 registerlösen = input("registrera lösenord: ") #man registrerar sitt lösenord har och användar namn ovanför
 
-file = open("balance.txt", "r+") #öppnar saldo dokumentet
+file = open("balance.txt", "r") #öppnar saldo dokumentet
 saldo = float(file.read())
-def removeContent():
-    file.seek(0)
-    file.truncate(0)
-    return file
-#saldo = float(input("hur mycket pengar har du?: "))
-
-#file.write(str(saldo))
-
-#file.close()
-
+file.close()
 
 while True: #while loop
     namn = input("användarnamn: ") 
@@ -29,14 +20,21 @@ while True: #while loop
         elif lösen == registerlösen:
             print("hej " + namn)
             print("ditt saldo är: " + str(saldo))
-            insättning = input("vill du ta ut eller sätta in pengar: ")
-            mängd = float(input("Hur mycket? "))
-            #file.write
+            insättning = input("vill du (ta ut) eller (sätta in) pengar: ")
+            
             if insättning == "sätta in":
+                mängd = float(input("Hur mycket? "))
+                file = open("balance.txt", "w")
                 saldo = mängd + float(saldo)
-                removeContent()
                 file.write(str(saldo))
                 print("nya saldot är: " + str(saldo))
+                file.close()
             elif insättning == "ta ut":
+                mängd = float(input("Hur mycket? "))
+                file = open("balance.txt", "w")
                 saldo -= mängd
+                file.write(str(saldo))
                 print("nya saldot är: " + str(saldo))
+                file.close()
+            else:
+                print("det finns inget kommando med namnet " + insättning)
