@@ -1,9 +1,9 @@
 registernamn = input("registrera användarnamn: ") 
-registerlösen = input("registrera lösenord: ") #man registrerar sitt lösenord har och användar namn ovanför
+registerlösen = input("registrera lösenord: ") #man registrerar sitt lösenord och användar namn ovanför
 
 file = open("balance.txt", "r") #öppnar saldo dokumentet
-saldo = float(file.read())
-file.close()
+saldo = float(file.read()) #saldo blir file som float och det läser bara
+file.close() #stänger filen
 
 while True: #while loop
     namn = input("användarnamn: ") 
@@ -17,24 +17,24 @@ while True: #while loop
         if lösen != registerlösen: #kollar om det är fel lösenord
             print("fel lösenord: ") 
         
-        elif lösen == registerlösen:
+        elif lösen == registerlösen: #kollar om det är rätt lösenord
             print("hej " + namn)
             print("ditt saldo är: " + str(saldo))
-            insättning = input("vill du (ta ut) eller (sätta in) pengar: ")
+            insättning = input("vill du (ta ut) eller (sätta in) pengar: ") #frågar om man vill sätta in eller ta ut pengar
             
-            if insättning == "sätta in":
-                mängd = float(input("Hur mycket? "))
-                file = open("balance.txt", "w")
-                saldo = mängd + float(saldo)
-                file.write(str(saldo))
+            if insättning == "sätta in": #om man skrivit sätta in kör den detta
+                mängd = float(input("Hur mycket? ")) 
+                file = open("balance.txt", "w") #öppnar balance.txt som write
+                saldo = mängd + float(saldo) #plusar ihop pengarna
+                file.write(str(saldo)) #skriver över allt som är i filen till det saldo är
                 print("nya saldot är: " + str(saldo))
-                file.close()
+                file.close() #stänger filen
             elif insättning == "ta ut":
                 mängd = float(input("Hur mycket? "))
-                file = open("balance.txt", "w")
-                saldo -= mängd
-                file.write(str(saldo))
+                file = open("balance.txt", "w") #öppnar i write
+                saldo -= mängd 
+                file.write(str(saldo)) #subtraherar pengarna
                 print("nya saldot är: " + str(saldo))
-                file.close()
+                file.close() # stänger filen
             else:
-                print("det finns inget kommando med namnet " + insättning)
+                print("det finns inget kommando med namnet " + insättning) #om man skriver ett alternativ som inte finns skrivs detta
